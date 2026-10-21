@@ -15,13 +15,13 @@ def task_decomposer_agent(user_prompt: str) -> dict:
     3. Return output strictly in valid JSON format with keys: 'goal', 'steps'.
     """
     response = client.models.generate_content(
-        model="gemini-2.5-flash-lite",
-        contents=user_prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=system_instruction,
-            response_mime_type="application/json"
-        )
+    model="gemini-2.5-flash",
+    contents=user_prompt,
+    config=types.GenerateContentConfig(
+        system_instruction=system_instruction,
+        response_mime_type="application/json"
     )
+)
     return json.loads(response.text)
 
 if __name__ == "__main__":

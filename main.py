@@ -15,7 +15,7 @@ def task_decomposer_agent(user_prompt: str) -> dict:
     3. Return output strictly in valid JSON format with keys: 'goal', 'steps'.
     """
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-2.5-flash-lite",
         contents=user_prompt,
         config=types.GenerateContentConfig(
             system_instruction=system_instruction,
@@ -29,3 +29,4 @@ if __name__ == "__main__":
     print(f"--- Decomposing Goal: {goal} ---")
     plan = task_decomposer_agent(goal)
     print(json.dumps(plan, indent=2))
+

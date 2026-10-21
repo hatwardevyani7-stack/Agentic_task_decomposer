@@ -3,9 +3,10 @@ import os
 from google import genai
 from google.genai import types
 
+# Initialize Gemini Client
 client = genai.Client()
 
-def task_decomposer_agent(user_prompt: str) dict:
+def task_decomposer_agent(user_prompt: str) -> dict:
     """Decomposes a high-level goal into structured execution steps."""
     system_instruction = """
     You are an AI Task Planning Agent. Given a high-level user goal:
@@ -24,8 +25,7 @@ def task_decomposer_agent(user_prompt: str) dict:
     return json.loads(response.text)
 
 if __name__ == "__main__":
-    goal = "Build a lightweight web scraper for technology news
-    headlines."
+    goal = "Build a lightweight web scraper for technology news headlines."
     print(f"--- Decomposing Goal: {goal} ---")
     plan = task_decomposer_agent(goal)
     print(json.dumps(plan, indent=2))
